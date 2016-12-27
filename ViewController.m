@@ -73,7 +73,9 @@
     _sendbtn.titleLabel.textColor = [UIColor whiteColor];
     [_sendbtn setTitle : @"发送验证码"forState:UIControlStateNormal];
     [_sendbtn.layer setCornerRadius : 5.0];
-    
+    UITapGestureRecognizer *zer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushNavigatoinController)];
+    _sendbtn.userInteractionEnabled = YES;
+    [_sendbtn addGestureRecognizer:zer];
     
     //按钮登录
     _enterbtn = [[UIButton alloc] init];
@@ -84,20 +86,11 @@
     [_enterbtn setTitle : @"登录" forState:UIControlStateNormal];
     [_enterbtn.layer setCornerRadius:10.0];
     
-    //忘记密码
-    _ForgetPwdLabel = [[UILabel alloc] init];
-    _ForgetPwdLabel.frame = CGRectMake(23, 630, self.view.frame.size.width -315, 15);
-    _ForgetPwdLabel.text = @"忘记密码";
-    _ForgetPwdLabel.textColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor grayColor];
+    self.navigationItem.title = @"注册";
     _ForgetPwdLabel.font = [UIFont systemFontOfSize:10];
-    
-    //注册账号
-    _RegistrationLabel = [[UILabel alloc] init];
-    _RegistrationLabel.frame = CGRectMake(346, 630, self.view.frame.size.width -315, 15);
     _RegistrationLabel.text = @"注册账号";
-    _RegistrationLabel.textColor = [UIColor whiteColor];
-    _RegistrationLabel.font = [UIFont systemFontOfSize:10];
-    self.view.backgroundColor =[UIColor grayColor];
+    
     
     [self.view addSubview:self.PhoneLable];
     [self.view addSubview:self.PhoneTextField];
@@ -112,8 +105,21 @@
     [self.view addSubview:self.VerTextField];
     [self.view addSubview:self.thereLabel];
     [self.view addSubview:self.sendbtn];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
 }
 
+- (void) pushNavigatoinController
+{
+    LogInViewController *inViewController = [[LogInViewController alloc] init];
+    [self.navigationController pushViewController:inViewController animated:YES];
+}
+
+- (void) popViewController
+{
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

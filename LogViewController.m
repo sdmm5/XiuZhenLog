@@ -7,6 +7,8 @@
 //
 
 #import "LogViewController.h"
+#import "ViewController.h"
+#import "LogInViewController.h"
 
 @interface LogViewController ()
 
@@ -53,6 +55,8 @@
     _enterbtn.titleLabel.textColor = [UIColor whiteColor];
     [_enterbtn setTitle : @"登录" forState:UIControlStateNormal];
     [_enterbtn.layer setCornerRadius:10.0];
+    [_enterbtn addTarget:self action:@selector(pushNextViewController) forControlEvents:UIControlEventTouchUpInside];
+    
     
     //忘记密码
     _ForgetPwdLabel = [[UILabel alloc] init];
@@ -60,6 +64,12 @@
     _ForgetPwdLabel.text = @"忘记密码";
     _ForgetPwdLabel.textColor = [UIColor whiteColor];
     _ForgetPwdLabel.font = [UIFont systemFontOfSize:10];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushLogInViewController)];
+    _ForgetPwdLabel.userInteractionEnabled = YES;
+    [_ForgetPwdLabel addGestureRecognizer:tap];
+    
+
+    
     
     //注册账号
     _RegistrationLabel = [[UILabel alloc] init];
@@ -68,6 +78,17 @@
     _RegistrationLabel.textColor = [UIColor whiteColor];
     _RegistrationLabel.font = [UIFont systemFontOfSize:10];
     self.view.backgroundColor =[UIColor grayColor];
+    UITapGestureRecognizer *zer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushNextViewController)];
+    _RegistrationLabel.userInteractionEnabled = YES;
+    [_RegistrationLabel addGestureRecognizer:zer];
+    
+   
+    
+    self.navigationItem.title = @"登录";
+    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
+    
+    
+    
     
     [self.view addSubview:self.PhoneLable];
     [self.view addSubview:self.PhoneTextField];
@@ -80,10 +101,28 @@
     [self.view addSubview:self.RegistrationLabel];
 }
 
+
+-(void)pushNextViewController{
+    ViewController *viewController = [[ViewController alloc] init];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+
+
+-(void)pushLogInViewController
+{
+    LogInViewController *logIn = [[LogInViewController alloc] init];
+    [self.navigationController pushViewController:logIn animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

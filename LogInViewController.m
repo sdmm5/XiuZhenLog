@@ -28,7 +28,7 @@
     // _PhoneLable.lineBreakMode=UILineBreakModeCharacterWrap;
     // _PhoneLable.userInteractionEnabled=YES;
     // _PhoneLable.enabled=YES;
-    
+     
     
     _oneLabel = [[UILabel alloc] init];
     _oneLabel.frame = CGRectMake(30, 159,self.view.frame.size.width - 60, 1);
@@ -82,21 +82,11 @@
     _enterbtn.titleLabel.textColor = [UIColor whiteColor];
     [_enterbtn setTitle : @"登录" forState:UIControlStateNormal];
     [_enterbtn.layer setCornerRadius:10.0];
+    self.view.backgroundColor = [UIColor grayColor];
+    self.navigationItem.title = @"找回密码";
     
-    //忘记密码
-    _ForgetPwdLabel = [[UILabel alloc] init];
-    _ForgetPwdLabel.frame = CGRectMake(23, 630, self.view.frame.size.width -315, 15);
-    _ForgetPwdLabel.text = @"忘记密码";
-    _ForgetPwdLabel.textColor = [UIColor whiteColor];
-    _ForgetPwdLabel.font = [UIFont systemFontOfSize:10];
-    
-    //注册账号
-    _RegistrationLabel = [[UILabel alloc] init];
-    _RegistrationLabel.frame = CGRectMake(346, 630, self.view.frame.size.width -315, 15);
-    _RegistrationLabel.text = @"注册账号";
-    _RegistrationLabel.textColor = [UIColor whiteColor];
-    _RegistrationLabel.font = [UIFont systemFontOfSize:10];
-    self.view.backgroundColor =[UIColor grayColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                              initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(popViewController)];
     
     [self.view addSubview:self.PhoneLable];
     [self.view addSubview:self.PhoneTextField];
@@ -111,6 +101,11 @@
     [self.view addSubview:self.VerTextField];
     [self.view addSubview:self.thereLabel];
     [self.view addSubview:self.sendbtn];
+}
+
+- (void) popViewController
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

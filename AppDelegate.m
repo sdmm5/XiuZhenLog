@@ -20,11 +20,18 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     LogViewController *rootView = [[LogViewController alloc] init];
-    self.window.rootViewController = rootView;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rootView];
+    self.window.rootViewController = navController;
     
+    ViewController *controller = [[ViewController alloc] init];
     
     return YES;
 }
+
+
+
+
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
